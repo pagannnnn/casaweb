@@ -1,0 +1,15 @@
+
+#row-aqua {
+  background-color: aqua;
+  padding: 30px;
+}
+
+
+#row-fondo {
+  background-image: url('imagenes/fondo.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 30px;
+}
