@@ -106,7 +106,6 @@ main {
   text-align: center;
 }
 
-
 @media (max-width: 900px) {
   .contenedor {
     flex-direction: column;
