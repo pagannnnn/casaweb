@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proveedores</title>
+  <link rel="stylesheet" href="../css/proveedor.css">
+</head>
+
+<body>
+  <header>
+    <nav id="menu">
+      <a href="./administrador.html" class="logo"><img src="../imagenes/logo.png" alt="Logo"></a>
+      <ul>
+        <li><a href="./proveedor.html">Proveedores</a></li>
+        <li><a href="./inventario.html">Inventario</a></li>
+        <li><a href="./personal.html">Personal</a></li>
+        <li><a href="./facturas.html">Facturas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contenido">
+    <h1>Lista de Proveedores</h1>
+
+    <table id="tablaProveedores">
+      <tr>
+        <th>Nombre</th>
+        <th>Producto</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+      <tr>
+        <td>Distribuidora López</td>
+        <td>Verduras frescas</td>
+        <td>55-1111-2222</td>
+        <td>contacto@dlopez.com</td>
+        <td>
+          <button class="editar" onclick="editarFila(this)">Editar</button>
+          <button class="eliminar" onclick="eliminarFila(this)">Eliminar</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Refrescos del Centro</td>
+        <td>Bebidas</td>
+        <td>55-3333-4444</td>
+        <td>ventas@rcentro.com</td>
+        <td>
+          <button class="editar" onclick="editarFila(this)">Editar</button>
+          <button class="eliminar" onclick="eliminarFila(this)">Eliminar</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Carnes Selectas S.A.</td>
+        <td>Carne de res y cerdo</td>
+        <td>55-5555-6666</td>
+        <td>info@cselectas.com</td>
+        <td>
+          <button class="editar" onclick="editarFila(this)">Editar</button>
+          <button class="eliminar" onclick="eliminarFila(this)">Eliminar</button>
+        </td>
+      </tr>
+    </table>
+
+    <div class="botones">
+      <button onclick="agregarFila()">➕ Más</button>
+    </div>
+  </section>
+
+  <script>
+    function agregarFila() {
+      const tabla = document.getElementById("tablaProveedores");
+      const fila = tabla.insertRow(-1);
+
+      const nombre = prompt("Nombre del proveedor:");
+      if (!nombre) return;
+      const producto = prompt("Producto o servicio:");
+      const telefono = prompt("Teléfono:");
+      const correo = prompt("Correo electrónico:");
+
+      fila.innerHTML = `
+        <td>${nombre}</td>
+        <td>${producto}</td>
+        <td>${telefono}</td>
+        <td>${correo}</td>
+        <td>
+          <button class="editar" onclick="editarFila(this)">Editar</button>
+          <button class="eliminar" onclick="eliminarFila(this)">Eliminar</button>
+        </td>
+      `;
+    }
+
+    function eliminarFila(boton) {
+      const fila = boton.parentNode.parentNode;
+      fila.remove();
+    }
+
+    function editarFila(boton) {
+      const fila = boton.parentNode.parentNode;
+      const celdas = fila.getElementsByTagName("td");
+
+      const nombre = prompt("Editar nombre:", celdas[0].innerText);
+      if (nombre !== null) celdas[0].innerText = nombre;
+
+      const producto = prompt("Editar producto:", celdas[1].innerText);
+      if (producto !== null) celdas[1].innerText = producto;
+
+      const telefono = prompt("Editar teléfono:", celdas[2].innerText);
+      if (telefono !== null) celdas[2].innerText = telefono;
+
+      const correo = prompt("Editar correo:", celdas[3].innerText);
+      if (correo !== null) celdas[3].innerText = correo;
+    }
+  </script>
+</body>
+</html>

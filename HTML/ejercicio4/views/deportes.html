@@ -2,56 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deportes</title>
-  <link rel="stylesheet" href="../css/deportes.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deportes | Gaceta UNAM</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-  <nav id="menu">
-    <a href="../index.html" class="logo">
-      <img src="../images/UNAM.png" alt="Logo UNAM">
-    </a>
-    <ul>
-      <li><a href="../index.html">INICIO</a></li>
-      <li><a href="academico.html">ACADÉMICO</a></li>
-      <li><a href="cultura.html">CULTURA</a></li>
-      <li><a href="deportes.html">DEPORTES</a></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top border-bottom border-warning">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="../index.html">
+        <img src="../images/UNAM.png" alt="Logo UNAM" width="60" height="60" class="me-2 rounded bg-light p-1">
+      </a>
+      <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link fw-bold text-uppercase" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-uppercase" href="academico.html">Académico</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-uppercase" href="cultura.html">Cultura</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold text-uppercase active" href="deportes.html">Deportes</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  
-  <h1>Deportes</h1>
-  <p class="intro">
-    La sección de Deportes destaca las competencias, torneos y logros de los equipos representativos de la UNAM, 
-    promoviendo la actividad física y el espíritu deportivo entre los estudiantes.
-  </p>
+  <main class="container mt-5 pt-5 text-center">
+    <h1 class="text-primary fw-bold mb-4">Deportes</h1>
+    <p class="lead mb-5">
+      La sección de Deportes destaca las competencias, torneos y logros de los equipos representativos de la UNAM, 
+      promoviendo la actividad física y el espíritu deportivo entre los estudiantes.
+    </p>
 
-  <div class="columns">
-    <div class="column">
-      <h2>Porras y animación auriazul se hace de la parte más alta del podio</h2>
-      <p>La escuadra conformada por 15 alumnas y alumnos de esta casa de estudios se llevó el oro en el certamen celebrado en Nuevo León.</p>
-      <a href="a4.html">
-        <img src="../images/deportes img/Mujeres.jpg" alt="Porras UNAM">
-      </a>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="../images/deportes img/Mujeres.jpg" class="card-img-top" alt="Porras UNAM">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Porras y animación auriazul se hace de la parte más alta del podio</h5>
+            <p class="card-text">La escuadra conformada por 15 alumnas y alumnos de esta casa de estudios se llevó el oro en el certamen celebrado en Nuevo León.</p>
+            <a href="a4.html" class="btn btn-warning text-dark fw-bold">Leer más</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="../images/deportes img/sub-19.jpg" class="card-img-top" alt="Pumas Sub-19">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Pumas sub-19 sigue en el top five de la tabla</h5>
+            <p class="card-text">En el Apertura 2025 ha marcado 21 tantos en 12 partidos.</p>
+            <a href="a5.html" class="btn btn-warning text-dark fw-bold">Leer más</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="../images/deportes img/Gimnasia.jpg" class="card-img-top" alt="Gimnasia UNAM">
+          <div class="card-body">
+            <h5 class="card-title fw-bold text-primary">Gimnasia artística auriazul logró 23 medallas en Campeonato Regional</h5>
+            <p class="card-text">Atletas de esta casa de estudios se hicieron de cinco preseas de oro, 12 de plata y seis de bronce en el evento celebrado en Tlaxcala.</p>
+            <a href="a6.html" class="btn btn-warning text-dark fw-bold">Leer más</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </main>
 
-    <div class="column">
-      <h2>Pumas sub-19 sigue en el top five de la tabla</h2>
-      <p>En el Apertura 2025 ha marcado 21 tantos en 12 partidos.</p>
-      <a href="a5.html">
-        <img src="../images/deportes img/sub-19.jpg" alt="Pumas Sub-19">
-      </a>
-    </div>
-
-    <div class="column">
-      <h2>Gimnasia artística auriazul logró 23 medallas en Campeonato Regional</h2>
-      <p>Atletas de esta casa de estudios se hicieron de cinco preseas de oro, 12 de plata y seis de bronce en el evento celebrado en Tlaxcala.</p>
-      <a href="a6.html">
-        <img src="../images/deportes img/Gimnasia.jpg" alt="Gimnasia UNAM">
-      </a>
-    </div>
-  </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

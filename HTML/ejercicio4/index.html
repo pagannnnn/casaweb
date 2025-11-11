@@ -4,67 +4,111 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gaceta UNAM</title>
-  <link rel="stylesheet" href="css/index.css">
-</head>
-
-<body>
   
-  <header>
-    <nav id="menu">
-      <a href="#Inicio" class="logo">
-        <img src="../ejercicio4/images/UNAM.png" alt="Logo UNAM">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+     
+      <a class="navbar-brand d-flex align-items-center" href="#Inicio">
+        <img src="../ejercicio4/images/UNAM.png" alt="Logo UNAM" width="55" height="55" class="me-2 rounded bg-white p-1">
       </a>
-      <ul>
-        <li><a href="#Inicio">INICIO</a></li>
-        <li><a href="../ejercicio4/views/academico.html">ACADÉMICO</a></li>
-        <li><a href="../ejercicio4/views/cultura.html">CULTURA</a></li>
-        <li><a href="../ejercicio4/views/deportes.html">DEPORTES</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section id="Inicio">
-      <h1>Gaceta Universidad Autónoma de México</h1>
-      <p>La Gaceta UNAM es el órgano informativo de la Universidad Nacional Autónoma de México. 
-        Desde su fundación el 23 de agosto de 1954 difunde noticias, convocatorias y agendas de todas las instancias universitarias.
+     
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse justify-content-center" id="menu">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link text-white fw-semibold" href="#Inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold" href="../ejercicio4/views/academico.html">Académico</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold" href="../ejercicio4/views/cultura.html">Cultura</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold" href="../ejercicio4/views/deportes.html">Deportes</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="Inicio" class="bg-primary text-white text-center py-5 mt-5">
+    <div class="container">
+      <h1 class="fw-bold text-warning">Gaceta Universidad Autónoma de México</h1>
+      <p class="lead mb-4">
+        La Gaceta UNAM es el órgano informativo de la Universidad Nacional Autónoma de México. 
+        Desde su fundación en 1954, difunde noticias, convocatorias y actividades de todas las instancias universitarias.
       </p>
-    </section>
+      <a href="#Secciones" class="btn btn-warning text-dark fw-bold btn-lg">Explorar Secciones</a>
+    </div>
+  </section>
 
-    <section id="Secciones">
-      <div class="contenedor">
-        <div class="bloque">
-          <h2>ACADÉMICO</h2>
-           <a href="../ejercicio4/views/academico.html">
-              <img src="images/Academico.jpg" alt="Académico">
-           </a>
-          <p>Este espacio busca difundir las innovaciones, reconocimientos y actividades académicas que 
-            fortalecen el compromiso de la UNAM con la excelencia educativa y la formación integral de su comunidad universitaria.
-          </p>
-        </div>
-
-        <div class="bloque">
-          <h2>CULTURA</h2>
-           <a href="../ejercicio4/views/cultura.html">
-            <img src="images/Cultura.jpg" alt="Cultura">
-           </a>
-          <p>La sección de Cultura promueve las expresiones artísticas, tradiciones y actividades culturales
-            que enriquecen la vida universitaria. Aquí se difunden exposiciones, obras de teatro, conciertos y proyectos 
-            culturales de la UNAM que fortalecen el vínculo entre la comunidad y la sociedad.
-          </p>
-        </div>
-
-        <div class="bloque">
-          <h2>DEPORTES</h2>
-          <a href="../ejercicio4/views/deportes.html">
-            <img src="images/Deportes.jpg" alt="Deportes">
-          </a>
-          <p>La sección de Deportes destaca las competencias, torneos y logros de los equipos representativos
-            de la UNAM, promoviendo la actividad física y el espíritu deportivo entre los estudiantes.
-          </p>
+  <!-- SECCIONES -->
+  <section id="Secciones" class="container my-5">
+    <div class="row g-4">
+      <!-- Académico -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <img src="images/Academico.jpg" class="card-img-top" alt="Académico">
+          <div class="card-body">
+            <h3 class="card-title text-center text-primary fw-bold">Académico</h3>
+            <p class="card-text">
+              Este espacio busca difundir las innovaciones, reconocimientos y actividades académicas que fortalecen el compromiso de la UNAM con la excelencia educativa y la formación integral de su comunidad universitaria.
+            </p>
+          </div>
+          <div class="card-footer bg-transparent text-center">
+            <a href="../ejercicio4/views/academico.html" class="btn btn-outline-primary">Ver más</a>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
+
+    
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <img src="images/Cultura.jpg" class="card-img-top" alt="Cultura">
+          <div class="card-body">
+            <h3 class="card-title text-center text-primary fw-bold">Cultura</h3>
+            <p class="card-text">
+              La sección de Cultura promueve las expresiones artísticas, tradiciones y actividades culturales que enriquecen la vida universitaria. Aquí se difunden exposiciones, obras de teatro, conciertos y proyectos culturales de la UNAM que fortalecen el vínculo entre la comunidad y la sociedad.
+            </p>
+          </div>
+          <div class="card-footer bg-transparent text-center">
+            <a href="../ejercicio4/views/cultura.html" class="btn btn-outline-primary">Ver más</a>
+          </div>
+        </div>
+      </div>
+
+     
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card h-100 shadow-sm">
+          <img src="images/Deportes.jpg" class="card-img-top" alt="Deportes">
+          <div class="card-body">
+            <h3 class="card-title text-center text-primary fw-bold">Deportes</h3>
+            <p class="card-text">
+              La sección de Deportes destaca las competencias, torneos y logros de los equipos representativos de la UNAM, promoviendo la actividad física y el espíritu deportivo entre los estudiantes.
+            </p>
+          </div>
+          <div class="card-footer bg-transparent text-center">
+            <a href="../ejercicio4/views/deportes.html" class="btn btn-outline-primary">Ver más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer class="bg-primary text-white text-center py-3">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 Gaceta UNAM. Todos los derechos reservados.</p>
+      <p class="mb-0"><a href="#Inicio" class="text-warning text-decoration-none"><i class="bi bi-arrow-up-circle"></i> Volver arriba</a></p>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
