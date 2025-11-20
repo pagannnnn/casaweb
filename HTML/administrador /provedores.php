@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Proveedores</title>
-  <link rel="stylesheet" href="../css/proveedor.css">
+  <link rel="stylesheet" href="../../css/proveedor.css">
 </head>
 
 <body>
