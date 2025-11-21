@@ -18,14 +18,12 @@
       overflow: hidden;
     }
 
-    /* --- CONTENEDOR PRINCIPAL (3 COLUMNAS) --- */
     .contenedor-3 {
       display: flex;
       width: 100%;
       height: 100vh;
     }
 
-    /* --- CADA LADO DE LA PANTALLA --- */
     .lado {
       flex: 1;
       display: flex;
@@ -64,7 +62,6 @@
       margin-bottom: 2rem;
     }
 
-    /* --- LOGIN BOX --- */
     .login-box {
       background: white;
       padding: 2rem;
@@ -109,11 +106,6 @@
       color: rgb(0,153,68);
     }
 
-    button:hover {
-      opacity: 0.85;
-    }
-
-    /* --- BOTÓN LADO DERECHO --- */
     .btn-menu {
       padding: 15px 30px;
       background-color: #009944;
@@ -136,71 +128,48 @@
 
   <div class="contenedor-3">
 
-    <!-- LADO EMPLEADO -->
+    <!-- EMPLEADO -->
     <div class="lado empleado">
       <img src="imagenes/logo.png" alt="Logo La Casa de Toño" class="logo">
       <h1>La Casa de Toño</h1>
 
       <div class="login-box">
         <h2>Empleado</h2>
-        <form onsubmit="loginEmpleado(event)">
-          <input type="text" id="userEmpleado" placeholder="Usuario" required>
-          <input type="password" id="passEmpleado" placeholder="Contraseña" required>
+        <form action="login.php" method="POST">
+          <input type="hidden" name="tipo" value="empleado">
+          <input type="text" name="usuario" placeholder="Usuario" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
           <button type="submit">Entrar</button>
         </form>
       </div>
     </div>
 
-    <!-- LADO ADMIN -->
+    <!-- ADMIN -->
     <div class="lado admin">
       <img src="imagenes/logo.png" alt="Logo La Casa de Toño" class="logo">
       <h1>La Casa de Toño</h1>
 
       <div class="login-box">
         <h2>Administrador</h2>
-        <form onsubmit="loginAdmin(event)">
-          <input type="text" id="userAdmin" placeholder="Usuario" required>
-          <input type="password" id="passAdmin" placeholder="Contraseña" required>
+
+        <!-- CAMBIA ESTA RUTA POR LA REAL -->
+        <form action="validaradmin.php" method="POST">
+          <input type="hidden" name="tipo" value="administrador">
+          <input type="text" name="usuario" placeholder="Usuario" required>
+          <input type="password" name="password" placeholder="Contraseña" required>
           <button type="submit">Entrar</button>
         </form>
+
       </div>
     </div>
 
-    <!-- LADO 3: BOTÓN MENÚ -->
+    <!-- LADO DERECHA -->
     <div class="lado menu-lateral">
       <h1>Opciones</h1>
       <button class="btn-menu" onclick="window.location.href='index.html'">Ir al menú</button>
     </div>
 
   </div>
-
-  <script>
-    function loginEmpleado(e) {
-      e.preventDefault();
-      const user = document.getElementById("userEmpleado").value;
-      const pass = document.getElementById("passEmpleado").value;
-
-      if (user === "empleado" && pass === "1234") {
-        alert("Bienvenido " + user);
-        window.location.href = "../";  
-      } else {
-        alert("Usuario o contraseña incorrectos (empleado)");
-      }
-    }
-
-    function loginAdmin(e) {
-      e.preventDefault();
-      const user = document.getElementById("userAdmin").value;
-      const pass = document.getElementById("passAdmin").value;
-
-      if (user === "admin" && pass === "1234") {
-        alert("Bienvenido Administrador");
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Usuario o contraseña incorrectos (admin)");
-      }
-    }
-  </script>
 
 </body>
 </html>
