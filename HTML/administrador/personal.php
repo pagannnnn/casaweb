@@ -1,195 +1,354 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+session_start();
+require_once "../../conexion.php"; // AJUSTA ESTA RUTA SI ES NECESARIO
 
-require_once "../../conexion.php";
-
-// INSERTAR
+// ===================================
+// INSERTAR NUEVO EMPLEADO
+// ===================================
 if (isset($_POST["accion"]) && $_POST["accion"] === "insertar") {
-    $nombre = $_POST["nombre"];
-    $puesto = $_POST["puesto"];
-    $horario = $_POST["horario"];
-    $sueldo = $_POST["sueldo"];
 
-    $sql = "INSERT INTO personal (nombre, puesto, horario, sueldo)
-            VALUES ('$nombre', '$puesto', '$horario', '$sueldo')";
-    $conn->query($sql);
+    $sql = "INSERT INTO empleados (nombre, usuario, password, correo, telefono, puesto, area, fecha_ingreso)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param(
+        "ssssssss",
+        $_POST["nombre"],
+        $_POST["usuario"],
+        $_POST["password"],
+        $_POST["correo"],
+        $_POST["telefono"],
+        $_POST["puesto"],
+        $_POST["area"],
+        $_POST["fecha_ingreso"]
+    );
+
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: personal.php");
+    exit;
 }
 
-// ELIMINAR
+// ===================================
+// ACTUALIZAR EMPLEADO
+// ===================================
+if (isset($_POST["accion"]) && $_POST["accion"] === "editar") {
+
+    $sql = "UPDATE empleados SET nombre=?, usuario=?, password=?, correo=?, telefono=?, puesto=?, area=?, fecha_ingreso=?
+            WHERE id=?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param(
+        "ssssssssi",
+        $_POST["nombre"],
+        $_POST["usuario"],
+        $_POST["password"],
+        $_POST["correo"],
+        $_POST["telefono"],
+        $_POST["puesto"],
+        $_POST["area"],
+        $_POST["fecha_ingreso"],
+        $_POST["id"]
+    );
+
+    $stmt->execute();
+    $stmt->close();
+
+    header("Location: personal.php");
+    exit;
+}
+
+// ===================================
+// ELIMINAR EMPLEADO
+// ===================================
 if (isset($_GET["eliminar"])) {
     $id = $_GET["eliminar"];
-    $conn->query("DELETE FROM personal WHERE id = $id");
+    $conn->query("DELETE FROM empleados WHERE id = $id");
+    header("Location: personal.php");
+    exit;
 }
 
-// EDITAR
-if (isset($_POST["accion"]) && $_POST["accion"] === "editar") {
-    $id = $_POST["id"];
-    $nombre = $_POST["nombre"];
-    $puesto = $_POST["puesto"];
-    $horario = $_POST["horario"];
-    $sueldo = $_POST["sueldo"];
-
-    $conn->query("UPDATE personal 
-                  SET nombre='$nombre',
-                      puesto='$puesto',
-                      horario='$horario',
-                      sueldo='$sueldo'
-                  WHERE id=$id");
-}
-
-$result = $conn->query("SELECT * FROM personal");
+// ===================================
+// OBTENER TODOS LOS EMPLEADOS
+// ===================================
+$empleados = $conn->query("SELECT * FROM empleados");
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+  
 <head>
-  <meta charset="UTF-8">
-  <title>Personal Activo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    header { background: #c8102e; padding: 15px; }
-    #menu ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; align-items: center; }
-    #menu a { color: white; text-decoration: none; font-weight: bold; }
-    #menu a:hover { color: #f4c300; }
-    .logo img { height: 45px; margin-right: 20px; background: white; padding: 5px; border-radius: 5px; }
-    body { font-family: 'Montserrat', sans-serif; background-color: #f8f8f8; }
-    h1,h2,h3 { color: #c8102e; }
-    .card { border: 2px solid #c8102e; }
-    .btn-primary { background-color: #c8102e; border-color: #c8102e; }
-    .btn-primary:hover { background-color: #a10b28; border-color: #a10b28; }
-    .btn-warning { background-color: #f4c300; border-color: #f4c300; color: #000; }
-    .btn-warning:hover { background-color: #e0b000; border-color: #e0b000; }
-    .btn-success { background-color: #c8102e; border-color: #c8102e; }
-    .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
-    .table thead { background-color: #c8102e; color: white; }
-    .table-striped tbody tr:nth-of-type(odd) { background-color: #f9dada; }
-  </style>
+<meta charset="UTF-8">
+<title>Personal - CRUD</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+  /* NAV FIJO */
+  .navbar-fija {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: white;
+      padding: 10px 25px;
+      border-bottom: 3px solid #cccccc7a; /* LÍNEA DELGADA */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  /* LOGO */
+  .logo-nav {
+      height: 60px;
+      border-radius: 10px;
+      background: white;
+      padding: 5px;
+      transition: 0.2s;
+  }
+  .logo-nav:hover {
+      transform: scale(1.05);
+  }
+
+  /* LINKS */
+  .nav-link {
+      font-size: 17px;
+      font-weight: bold;
+      color: #009944 !important;
+      transition: 0.2s;
+  }
+  .nav-link:hover {
+      color: #c8102e !important;
+      transform: scale(1.05);
+  }
+
+  /* BOTÓN DE CERRAR SESIÓN */
+  .btn-cerrar {
+      background: #c8102e;
+      color: white !important;
+      font-weight: bold;
+      border-radius: 6px;
+  }
+  .btn-cerrar:hover {
+      background: #a10b28;
+  }
+</style>
 
 <body>
-<header>
-  <nav id="menu" class="container d-flex justify-content-between">
-    <a href="./administrador.html" class="logo"><img src="../imagenes/logo.png" alt="Logo"></a>
-    <ul>
-      <li><a href="./proveedores.php">Proveedores</a></li>
-      <li><a href="./inventario.php">Inventario</a></li>
-      <li><a href="./personal.php">Personal</a></li>
-      <li><a href="./ventas.php">Ventas</a></li>
-    </ul>
-  </nav>
-</header>
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Personal Activo</h1>
+<nav class="navbar navbar-expand-lg navbar-fija">
+  <div class="container-fluid">
 
-  <!-- FORM AGREGAR -->
-  <div class="card shadow p-4 mb-5">
-      <h3>Agregar empleado</h3>
-      <form method="POST" class="row g-3">
-          <input type="hidden" name="accion" value="insertar">
-          <div class="col-md-6">
-              <label class="form-label">Nombre</label>
-              <input type="text" name="nombre" class="form-control" required>
-          </div>
-          <div class="col-md-6">
-              <label class="form-label">Puesto</label>
-              <input type="text" name="puesto" class="form-control" required>
-          </div>
-          <div class="col-md-6">
-              <label class="form-label">Horario</label>
-              <input type="text" name="horario" class="form-control" required>
-          </div>
-          <div class="col-md-6">
-              <label class="form-label">Sueldo</label>
-              <input type="number" name="sueldo" class="form-control" required min="0" step="0.01">
-          </div>
-          <div class="col-12">
-              <button type="submit" class="btn btn-primary">Agregar</button>
-          </div>
-      </form>
+    <!-- LOGO -->
+    <a class="navbar-brand d-flex align-items-center" href="administrador.php">
+        <img src="../../imagenes/logo.png" alt="Logo" class="logo-nav">
+    </a>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#MenuAdmin">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENÚ CENTRADO -->
+    <div class="collapse navbar-collapse justify-content-center" id="MenuAdmin">
+      <ul class="navbar-nav mb-2 mb-lg-0" style="gap:35px;">
+        <li class="nav-item">
+          <a class="nav-link" href="./proveedores.php">Proveedores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./inventario.php">Inventario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./personal.php">Personal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./ventas.php">Ventas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./vacacionesadmin.php">Control Vacaciones</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- BOTÓN CERRAR SESIÓN -->
+    <div class="ms-auto">
+      <a href="../../logout.php" class="btn btn-cerrar px-3">
+        Cerrar sesión
+      </a>
+    </div>
+
   </div>
+</nav>
 
-  <!-- TABLA -->
-  <h2 class="mb-3">Lista de empleados</h2>
-  <table class="table table-striped table-bordered shadow">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Puesto</th>
-        <th>Horario</th>
-        <th>Sueldo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php while ($row = $result->fetch_assoc()): ?>
-      <tr>
-        <td><?= $row["id"] ?></td>
-        <td><?= $row["nombre"] ?></td>
-        <td><?= $row["puesto"] ?></td>
-        <td><?= $row["horario"] ?></td>
-        <td>$<?= number_format($row["sueldo"],2) ?></td>
-        <td>
-          <button class="btn btn-warning btn-sm"
-              onclick="mostrarEdicion(<?= $row['id'] ?>, '<?= $row['nombre'] ?>', '<?= $row['puesto'] ?>', '<?= $row['horario'] ?>', <?= $row['sueldo'] ?>)">
-            Editar
-          </button>
-          <a href="?eliminar=<?= $row['id'] ?>" class="btn btn-danger btn-sm"
-             onclick="return confirm('¿Seguro que deseas eliminar?')">
-            Eliminar
-          </a>
-        </td>
-      </tr>
-    <?php endwhile; ?>
-    </tbody>
-  </table>
+<div class="container">
 
-  <!-- FORM EDITAR -->
-  <div id="editarForm" class="card shadow p-4 mt-5" style="display:none;">
-    <h3>Editar empleado</h3>
-    <form method="POST" class="row g-3">
-        <input type="hidden" name="accion" value="editar">
-        <input type="hidden" name="id" id="edit_id">
-        <div class="col-md-6">
-            <label class="form-label">Nombre</label>
-            <input type="text" name="nombre" id="edit_nombre" class="form-control" required>
+    <h2 class="mb-4">Gestión de Empleados</h2>
+
+    <!-- ========================= -->
+    <!-- FORMULARIO AGREGAR -->
+    <!-- ========================= -->
+    <div class="card mb-4">
+        <div class="card-header">Agregar Empleado</div>
+        <div class="card-body">
+
+            <form method="POST">
+                <input type="hidden" name="accion" value="insertar">
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label>Usuario</label>
+                        <input type="text" name="usuario" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label>Correo</label>
+                        <input type="email" name="correo" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label>Teléfono</label>
+                        <input type="text" name="telefono" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Puesto</label>
+                        <input type="text" name="puesto" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label>Área</label>
+                        <input type="text" name="area" class="form-control">
+                    </div>
+                </div>
+
+                <label>Fecha de ingreso</label>
+                <input type="date" name="fecha_ingreso" class="form-control mb-3">
+
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+
         </div>
-        <div class="col-md-6">
-            <label class="form-label">Puesto</label>
-            <input type="text" name="puesto" id="edit_puesto" class="form-control" required>
+    </div>
+
+    <!-- ========================= -->
+    <!-- TABLA DE EMPLEADOS -->
+    <!-- ========================= -->
+    <div class="card">
+        <div class="card-header">Lista de Empleados</div>
+        <div class="card-body p-0">
+
+            <table class="table table-striped mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Puesto</th>
+                        <th>Área</th>
+                        <th>Ingreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php while ($e = $empleados->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= $e["id"] ?></td>
+                        <td><?= $e["nombre"] ?></td>
+                        <td><?= $e["usuario"] ?></td>
+                        <td><?= $e["correo"] ?></td>
+                        <td><?= $e["puesto"] ?></td>
+                        <td><?= $e["area"] ?></td>
+                        <td><?= $e["fecha_ingreso"] ?></td>
+
+                        <td>
+                            <!-- BOTÓN EDITAR -->
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalEditar<?= $e["id"] ?>">Editar</button>
+
+                            <!-- BOTÓN ELIMINAR -->
+                            <a href="personal.php?eliminar=<?= $e['id'] ?>" 
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Seguro que deseas eliminar?')">Eliminar</a>
+                        </td>
+                    </tr>
+
+                    <!-- ========================= -->
+                    <!-- MODAL EDITAR -->
+                    <!-- ========================= -->
+                    <div class="modal fade" id="modalEditar<?= $e["id"] ?>" tabindex="-1">
+                        <div class="modal-dialog">
+                            <form method="POST" class="modal-content">
+
+                                <input type="hidden" name="accion" value="editar">
+                                <input type="hidden" name="id" value="<?= $e['id'] ?>">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Editar Empleado</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombre" class="form-control mb-2"
+                                           value="<?= $e['nombre'] ?>">
+
+                                    <label>Usuario</label>
+                                    <input type="text" name="usuario" class="form-control mb-2"
+                                           value="<?= $e['usuario'] ?>">
+
+                                    <label>Password</label>
+                                    <input type="text" name="password" class="form-control mb-2"
+                                           value="<?= $e['password'] ?>">
+
+                                    <label>Correo</label>
+                                    <input type="email" name="correo" class="form-control mb-2"
+                                           value="<?= $e['correo'] ?>">
+
+                                    <label>Teléfono</label>
+                                    <input type="text" name="telefono" class="form-control mb-2"
+                                           value="<?= $e['telefono'] ?>">
+
+                                    <label>Puesto</label>
+                                    <input type="text" name="puesto" class="form-control mb-2"
+                                           value="<?= $e['puesto'] ?>">
+
+                                    <label>Área</label>
+                                    <input type="text" name="area" class="form-control mb-2"
+                                           value="<?= $e['area'] ?>">
+
+                                    <label>Fecha ingreso</label>
+                                    <input type="date" name="fecha_ingreso" class="form-control"
+                                           value="<?= $e['fecha_ingreso'] ?>">
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <?php endwhile; ?>
+                </tbody>
+
+            </table>
+
         </div>
-        <div class="col-md-6">
-            <label class="form-label">Horario</label>
-            <input type="text" name="horario" id="edit_horario" class="form-control" required>
-        </div>
-        <div class="col-md-6">
-            <label class="form-label">Sueldo</label>
-            <input type="number" name="sueldo" id="edit_sueldo" class="form-control" required min="0" step="0.01">
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-success">Guardar cambios</button>
-            <button type="button" class="btn btn-secondary" onclick="ocultarEdicion()">Cancelar</button>
-        </div>
-    </form>
-  </div>
+    </div>
+
 </div>
 
-<script>
-function mostrarEdicion(id, nombre, puesto, horario, sueldo) {
-    document.getElementById("edit_id").value = id;
-    document.getElementById("edit_nombre").value = nombre;
-    document.getElementById("edit_puesto").value = puesto;
-    document.getElementById("edit_horario").value = horario;
-    document.getElementById("edit_sueldo").value = sueldo;
-    document.getElementById("editarForm").style.display = "block";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function ocultarEdicion() {
-    document.getElementById("editarForm").style.display = "none";
-}
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

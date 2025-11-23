@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Agua de Horchata</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tacos Dorados</title>
 
 <style>
   body {font-family:'Montserrat',sans-serif;background:#fffaf4;margin:0;padding:30px 15px;display:flex;justify-content:center;}
@@ -19,21 +19,29 @@
 <body>
 
 <div class="card">
-  <h1>Agua de Horchata</h1>
-  <img src="../../imagenes/GettyImages-493110032.jpg">
+  <h1>Tacos Dorados</h1>
+  <img src="../../imagenes/tacos-dorados-queso.jpg">
 
-  <p class="precio">$28</p>
+  <p class="precio">$45</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Arroz</li>
-    <li>Leche</li>
-    <li>Canela</li>
-    <li>Azúcar</li>
-    <li>Vainilla</li>
+    <li>Tortillas doradas</li>
+    <li>Pollo deshebrado</li>
+    <li>Lechuga fresca</li>
+    <li>Crema</li>
+    <li>Queso rallado</li>
+    <li>Salsa verde o roja</li>
   </ul>
 
-<a href="../menu.html" class="btn">← Regresar al menú</a>
+  <!-- BOTÓN REGRESAR -->
+  <a href="../menu.php" class="btn">← Regresar al menú</a>
+
+  <!-- BOTÓN AGREGAR A COMANDA -->
+  <a href="../ver_comanda.php?producto=Tacos%20Dorados&precio=45" 
+     class="btn" style="margin-top:10px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
 </div>
 
 </body>

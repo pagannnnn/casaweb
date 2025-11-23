@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Refresco</title>
+<title>Agua de Horchata</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,19 +19,25 @@
 <body>
 
 <div class="card">
-  <h1>Refresco</h1>
-  <img src="../../imagenes/0516292-2.webp">
+  <h1>Agua de Horchata</h1>
+  <img src="../../imagenes/GettyImages-493110032.jpg">
 
-  <p class="precio">$30</p>
+  <p class="precio">$28</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Bebida gaseosa</li>
-    <li>Hielo opcional</li>
-    <li>Vaso individual</li>
+    <li>Arroz</li>
+    <li>Leche</li>
+    <li>Canela</li>
+    <li>Azúcar</li>
+    <li>Vainilla</li>
   </ul>
 
-  <a href="../menu.html" class="btn">← Regresar al menú</a>
+ <a href="../menu.php" class="btn">← Regresar al menú</a>
+ <a href="../ver_comanda.php?producto=Agua%20De%20Horchata&precio=28" 
+     class="btn" style="margin-top:12px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
 </div>
 
 </body>

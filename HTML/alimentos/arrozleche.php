@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Arroz con Leche</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tacos Dorados</title>
 
 <style>
   body {font-family:'Montserrat',sans-serif;background:#fffaf4;margin:0;padding:30px 15px;display:flex;justify-content:center;}
@@ -19,22 +19,25 @@
 <body>
 
 <div class="card">
-  <h1>Tacos Dorados</h1>
-  <img src="../../imagenes/tacos-dorados-queso.jpg">
+  <h1>Arroz con Leche</h1>
+  <img src="../../imagenes/arroz-leche-1-scaled.jpg">
 
-  <p class="precio">$45</p>
+  <p class="precio">$35</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Tortillas doradas</li>
-    <li>Pollo deshebrado</li>
-    <li>Lechuga fresca</li>
-    <li>Crema</li>
-    <li>Queso rallado</li>
-    <li>Salsa verde o roja</li>
+    <li>Arroz</li>
+    <li>Leche</li>
+    <li>Canela</li>
+    <li>Azúcar</li>
+    <li>Vainilla</li>
   </ul>
 
- <a href="../menu.html" class="btn">← Regresar al menú</a>
+ <a href="../menu.php" class="btn">← Regresar al menú</a>
+ <a href="../ver_comanda.php?producto=Arroz%20Con%20Leche&precio=35" 
+     class="btn" style="margin-top:12px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
 </div>
 
 </body>

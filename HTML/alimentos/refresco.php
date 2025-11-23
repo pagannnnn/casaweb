@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Flan Napolitano</title>
+<title>Refresco</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,21 +19,22 @@
 <body>
 
 <div class="card">
-  <h1>Flan Napolitano</h1>
-  <img src="../../imagenes/flan-napolitano-estilo-yoli-2000-22de04763e6148fa979f6af0a9f42a8f.jpg">
+  <h1>Refresco</h1>
+  <img src="../../imagenes/0516292-2.webp">
 
-  <p class="precio">$40</p>
+  <p class="precio">$30</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Leche condensada</li>
-    <li>Leche evaporada</li>
-    <li>Huevos</li>
-    <li>Caramelo</li>
-    <li>Vainilla</li>
+    <li>Bebida gaseosa</li>
+    <li>Hielo opcional</li>
+    <li>Vaso individual</li>
   </ul>
-
-  <a href="../menu.html" class="btn">← Regresar al menú</a>
+ <a href="../menu.php" class="btn">← Regresar al menú</a>
+ <a href="../ver_comanda.php?producto=Refresco&precio=30" 
+     class="btn" style="margin-top:12px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
 </div>
 
 </body>

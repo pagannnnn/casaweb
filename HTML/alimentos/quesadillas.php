@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caldo de Pollo</title>
+  <title>Quesadillas</title>
 
   <style>
     body {
@@ -28,20 +28,18 @@
       border-radius: 16px;
       height: 260px;
       object-fit: cover;
-      margin-top: 15px;
     }
 
     h1 {
       color: #00954c;
+      margin-top: 20px;
       font-size: 32px;
-      margin-bottom: 5px;
     }
 
     .precio {
       color: #d90000;
       font-size: 22px;
       font-weight: bold;
-      margin-top: 10px;
       margin-bottom: 10px;
     }
 
@@ -66,22 +64,28 @@
 <body>
 
 <div class="container">
+  <img src="../../imagenes/descarga.jpg" alt="Quesadillas">
 
-  <h1>Caldo de Pollo</h1>
-  
+  <h1>Quesadillas</h1>
+  <p class="precio">$32</p>
 
-  <img src="../../imagenes/caldo-de-gallina.jpg" alt="Caldo de Pollo">
- <p class="precio">$75</p>
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Pollo cocido en caldo natural</li>
-    <li>Zanahoria, papa y calabaza</li>
-    <li>Arroz blanco</li>
-    <li>Cilantro y cebolla</li>
-    <li>Sal y especias</li>
+    <li>Tortilla de maíz o harina</li>
+    <li>Queso Oaxaca o manchego</li>
+    <li>Crema</li>
+    <li>Salsa verde o roja</li>
+    <li>Opcional: flor de calabaza, champiñones o tinga</li>
   </ul>
 
-  <a href="../menu.html" class="btn">← Regresar al menú</a>
+  <!-- BOTÓN REGRESAR -->
+  <a href="../menu.php" class="btn">← Regresar al menú</a>
+
+  <!-- BOTÓN AGREGAR A COMANDA -->
+  <a href="../ver_comanda.php?producto=Quesadillas&precio=32"
+     class="btn" style="background:#00693e;margin-top:15px;">
+     🛒 Agregar a comanda
+  </a>
 </div>
 
 </body>

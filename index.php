@@ -135,7 +135,7 @@
 
       <div class="login-box">
         <h2>Empleado</h2>
-        <form action="login.php" method="POST">
+        <form action="validaremp.php" method="POST">
           <input type="hidden" name="tipo" value="empleado">
           <input type="text" name="usuario" placeholder="Usuario" required>
           <input type="password" name="password" placeholder="Contraseña" required>
@@ -164,10 +164,10 @@
     </div>
 
     <!-- LADO DERECHA -->
-    <div class="lado menu-lateral">
-      <h1>Opciones</h1>
-      <button class="btn-menu" onclick="window.location.href='index.html'">Ir al menú</button>
-    </div>
+   <div class="lado menu-lateral">
+  <h1>Menú de Comida</h1>
+  <button class="btn-menu" onclick="window.location.href='html/menu.php'">Ir al menú</button>
+</div>
 
   </div>
 

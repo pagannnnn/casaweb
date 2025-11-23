@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Arroz con Leche</title>
+<title>Flan Napolitano</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,21 +19,30 @@
 <body>
 
 <div class="card">
-  <h1>Arroz con Leche</h1>
-  <img src="../../imagenes/arroz-leche-1-scaled.jpg">
+  <h1>Flan Napolitano</h1>
 
-  <p class="precio">$35</p>
+  <img src="../../imagenes/flan-napolitano-estilo-yoli-2000-22de04763e6148fa979f6af0a9f42a8f.jpg">
+
+  <p class="precio">$40</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Arroz</li>
-    <li>Leche</li>
-    <li>Canela</li>
-    <li>Azúcar</li>
+    <li>Leche condensada</li>
+    <li>Leche evaporada</li>
+    <li>Huevos</li>
+    <li>Caramelo</li>
     <li>Vainilla</li>
   </ul>
 
-<a href="../menu.html" class="btn">← Regresar al menú</a>
+  <!-- BOTÓN REGRESAR -->
+  <a href="../menu.php" class="btn">← Regresar al menú</a>
+
+  <!-- BOTÓN AGREGAR A COMANDA -->
+  <a href="../ver_comanda.php?producto=Flan%20Napolitano&precio=40" 
+     class="btn" style="margin-top:12px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
+
 </div>
 
 </body>

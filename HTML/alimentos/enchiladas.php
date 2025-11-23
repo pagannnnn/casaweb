@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Milanesa de Pollo</title>
+<title>Enchiladas Verdes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -19,22 +19,32 @@
 <body>
 
 <div class="card">
-  <h1>Milanesa de Pollo</h1>
-  <img src="../../imagenes/milanesa-de-pollo-con-papa-fritas.jpg">
+  <h1>Enchiladas Verdes</h1>
 
-  <p class="precio">$110</p>
+  <img src="../../imagenes/QUESO-FRESCO-ENCHILADAS-VERDES-LOW_WEB-scaled.jpg">
+
+  <p class="precio">$95</p>
 
   <h3>Ingredientes:</h3>
   <ul>
-    <li>Pechuga empanizada</li>
-    <li>Pan molido</li>
-    <li>Ensalada fresca</li>
-    <li>Arroz</li>
-    <li>Frijoles</li>
-    <li>Salsa al gusto</li>
+    <li>Tortillas de maíz</li>
+    <li>Salsa verde</li>
+    <li>Pollo deshebrado</li>
+    <li>Crema</li>
+    <li>Queso fresco</li>
+    <li>Cebolla</li>
+    <li>Lechuga opcional</li>
   </ul>
 
-<a href="../menu.html" class="btn">← Regresar al menú</a>
+  <!-- BOTÓN REGRESAR -->
+  <a href="../menu.php" class="btn">← Regresar al menú</a>
+
+  <!-- BOTÓN AGREGAR A COMANDA -->
+  <a href="../ver_comanda.php?producto=Enchiladas%20Verdes&precio=95" 
+     class="btn" style="margin-top:12px;background:#00693e;">
+     🛒 Agregar a comanda
+  </a>
+
 </div>
 
 </body>

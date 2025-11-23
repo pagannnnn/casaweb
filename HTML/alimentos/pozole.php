@@ -66,11 +66,12 @@
 
 <div class="container">
 
-  <h1>Pozole</h1>
-  
+  <h1>Pozole Verde</h1>
 
   <img src="../../imagenes/Pozole_06-1-principal.jpg" alt="Pozole">
-<p class="precio">$90</p>
+
+  <p class="precio">$90</p>
+
   <h3>Ingredientes:</h3>
   <ul>
     <li>Carne de cerdo deshebrada</li>
@@ -80,7 +81,15 @@
     <li>Orégano y limón</li>
   </ul>
 
- <a href="../menu.html" class="btn">← Regresar al menú</a>
+  <!-- REGRESAR -->
+  <a href="../menu.php" class="btn">← Regresar al menú</a>
+
+  <!-- AGREGAR A COMANDA -->
+  <a href="../ver_comanda.php?producto=Pozole%20Verde&precio=90"
+     class="btn" style="background:#00693e;margin-top:15px;">
+     🛒 Agregar a comanda
+  </a>
+
 </div>
 
 </body>
